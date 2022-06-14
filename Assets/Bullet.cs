@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
         Vector3 pos = transform.position;
 
         //ã‚É‚Ü‚Á‚·‚®”ò‚Ô
-        pos.z += 0.05f;
+        pos.z += 0.2f;
 
         //’e‚ÌˆÚ“®
         transform.position = new Vector3(pos.x, pos.y, pos.z);
@@ -25,6 +25,16 @@ public class Bullet : MonoBehaviour
         //ˆê’è‹——£i‚ñ‚¾‚çÁ–Å‚·‚é
         if (pos.z >= 20)
         {
+            Destroy(this.gameObject);
+        }
+    }
+    
+    //“–‚½‚è”»’è—pŠÖ”
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.GetComponent<Enemy>().Damage();
             Destroy(this.gameObject);
         }
     }
